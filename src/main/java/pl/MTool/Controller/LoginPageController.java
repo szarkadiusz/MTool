@@ -1,14 +1,14 @@
-package pl.MTool.ServiceController;
+package pl.MTool.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.pi4j.io.gpio.*;
 
 @Controller
-public class Page_Controler {
+public class LoginPageController {
 
     @GetMapping("/")
-    public String getIndexPage(){
+    public String getLoginPage(){
         return "index";
     }
 }
+
