@@ -13,7 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!--    <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
-
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -81,11 +80,49 @@
             var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
             barchart.draw(dataDataProgress, barchart_options);
         }
-        function drawChartYearlyForecast(){
-             var dataYearlyForecast = new google.visualization.DataTable();
+
+        function drawLinePerformance() {
+
+            var dataLinePerformance = new google.visualization.arrayToDataTable(
+                [
+                    ['Data', 'Ilość'],
+                    ['1-1-2020', 400],
+                    ['2--2020', 460],
+                    ['3-1-2020', 1120],
+                    ['4-1-2020', 1120],
+                    ['5-1-2020', 120],
+                    ['6-1-2020', 220],
+                    ['7-1-2020', 540]
+                ]
+            );
+
+
+            var dataPerformanceChart_options = {
+                title: 'Wielkość produkCji YTD',
+                width: 1200,
+                height: 600,
+                legend: 'none'
+            };
+
+            var dataPerformanceChart = new google.visualization.LineChart(document.getElementById('dataPerformanceChart_div'));
+            dataPerformanceChart.draw(dataLinePerformance, dataPerformanceChart_options);
+
+        }
+
+        function drawChartYearlyForecast() {
+            var dataYearlyForecast = new google.visualization.arrayToDataTable(
+                [
+                    ['Data', 'Ilość'],
+                    ['1-1-2020', 400],
+                    ['2--2020', 460],
+                    ['3-1-2020', 1120],
+                    ['4-1-2020', 540]
+                ]
+            );
+
 
             var yearlyForecastChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
+                title: 'Prognozowana produkcja roczna',
                 width: 400,
                 height: 300,
                 legend: 'none'
@@ -96,7 +133,7 @@
 
         }
 
-        function drawChartStationPerformance1(){
+        function drawChartStationPerformance1() {
 
             var dataStationPerformance1 = new google.visualization.arrayToDataTable(
                 [
@@ -109,7 +146,7 @@
             );
 
             var st1PerformanceChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
+                title: 'Wydajność stanowiska 1',
                 width: 400,
                 height: 300,
                 legend: 'none'
@@ -121,7 +158,7 @@
 
         }
 
-        function drawChartStationPerformance2(){
+        function drawChartStationPerformance2() {
 
             var dataStationPerformance2 = new google.visualization.arrayToDataTable(
                 [
@@ -134,7 +171,7 @@
             );
 
             var st2PerformanceChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
+                title: 'Wydajność stanowiska 2',
                 width: 400,
                 height: 300,
                 legend: 'none'
@@ -144,10 +181,9 @@
             st2PerformanceChart.draw(dataStationPerformance2, st2PerformanceChart_options);
 
 
-
         }
 
-        function drawChartStationPerformance3(){
+        function drawChartStationPerformance3() {
 
             var dataStationPerformance3 = new google.visualization.arrayToDataTable(
                 [
@@ -160,7 +196,7 @@
             );
 
             var st3PerformanceChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
+                title: 'Wydajność stanowiska 3',
                 width: 400,
                 height: 300,
                 legend: 'none'
@@ -171,7 +207,8 @@
 
 
         }
-        function drawChartStationPerformance4(){
+
+        function drawChartStationPerformance4() {
 
             var dataStationPerformance4 = new google.visualization.arrayToDataTable(
                 [
@@ -184,7 +221,7 @@
             );
 
             var st4PerformanceChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
+                title: 'Wydajność stanowiska 4',
                 width: 400,
                 height: 300,
                 legend: 'none'
@@ -192,22 +229,6 @@
             var st4PerformanceChart = new google.visualization.LineChart(document.getElementById('st4PerformanceChart_div'));
             st4PerformanceChart.draw(dataStationPerformance4, st4PerformanceChart_options);
 
-
-        }
-        function drawLinePerformance(){
-
-            var dataLinePerformance = new google.visualization.DataTable();
-
-
-            var dataPerformanceChart_options = {
-                title: 'Cel vs Wyprodukowana ilość',
-                width: 400,
-                height: 300,
-                legend: 'none'
-            };
-
-            var dataPerformanceChart = new google.visualization.LineChart(document.getElementById('dataPerformanceChart_div'));
-            dataPerformanceChart.draw(dataLinePerformance, dataPerformanceChart_options);
 
         }
 
@@ -241,25 +262,34 @@
                 </div>
             </li>
         </ul>
+
     </div>
-</nav>
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1800px;
 
+    }
+
+    barchart_div {
+        order: 1;
+    }
+
+    dataPerformanceChart_div {
+        order: 2;
+    }
+
+
+</style>
 <main role="main" class="container">
-<!--Charts-->
-    <table class="columns">
-        <tr>
-            <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="yearlyForecast_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="st1PerformanceChart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="st2PerformanceChart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="st3PerformanceChart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="st4PerformanceChart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="dataPerformanceChart_div" style="border: 1px solid #ccc"></div></td>
+    <!--Charts-->
 
-        </tr>
-    </table>
-
-
+    <div id="barchart_div" style="border: 1px solid #ccc"></div>
+    <div id="dataPerformanceChart_div" style="border: 1px solid #ccc"></div>
+    <div id="yearlyForecast_div" style="border: 1px solid #ccc"></div>
+    <div id="st1PerformanceChart_div" style="border: 1px solid #ccc"></div>
+    <div id="st2PerformanceChart_div" style="border: 1px solid #ccc"></div>
+    <div id="st3PerformanceChart_div" style="border: 1px solid #ccc"></div>
+    <div id="st4PerformanceChart_div" style="border: 1px solid #ccc"></div>
 
 
 </main><!-- /.container -->
