@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminPageController {
 
 
-    @GetMapping("/admin")
-    public String getDashBoardPage(){
-        return "admin_page";
+    @GetMapping("/admin/targets")
+    public String getAdminTargetsPage(){
+        return "admin_targets";
+    }
+
+    @GetMapping("/admin/forecast")
+    public String getAdminForecastPage(){
+        return "admin_forecast";
     }
 }
