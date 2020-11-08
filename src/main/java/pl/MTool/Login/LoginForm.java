@@ -8,11 +8,11 @@ import javax.validation.constraints.Size;
 public class LoginForm {
     @NonNull
     @Size(min=11,max=11)
-    private String email;
+    private String email="admin@pl.pl";
 
     @NonNull
     @Size(min=5,max=5)
-    private String password;
+    private String password="admin";
 
 
     public String getEmail() {
